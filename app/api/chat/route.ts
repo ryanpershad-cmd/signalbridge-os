@@ -3,12 +3,11 @@ import { SYSTEM_PROMPT } from '@/lib/chatContext';
 
 export const runtime = 'nodejs';
 
-const client = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
-
 export async function POST(request: Request) {
   try {
+    const client = new Anthropic({
+      apiKey: process.env.ANTHROPIC_API_KEY,
+    });
     const { messages } = await request.json();
 
     if (!messages || !Array.isArray(messages)) {
