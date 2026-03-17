@@ -44,7 +44,7 @@ export default function PortfolioOverview() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-slate-100">Portfolio Overview</h1>
-          <p className="text-[13px] text-slate-500 mt-0.5">SignalBridge Capital · Q4 2024 · As of December 9, 2024</p>
+          <p className="text-[13px] text-slate-500 mt-0.5">SignalBridge OS · By Merrin Investors · Q4 2024</p>
         </div>
         {/* Filters */}
         <div className="flex items-center gap-2">
