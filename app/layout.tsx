@@ -4,6 +4,7 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import Sidebar from '@/components/layout/Sidebar';
 import TopBar from '@/components/layout/TopBar';
+import ChatPanel from '@/components/ui/ChatPanel';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
             </main>
           </div>
         </div>
+        <ChatPanel />
       </body>
     </html>
   );
