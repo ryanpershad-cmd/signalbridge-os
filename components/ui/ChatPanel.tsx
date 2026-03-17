@@ -10,12 +10,12 @@ interface Message {
 }
 
 const SUGGESTED_PROMPTS = [
-  'Which companies need intervention right now?',
+  'Where do we need positive destruction thinking right now?',
+  'Which companies have a championship team problem?',
   'What are the biggest risks across the portfolio?',
-  'What should we discuss in the weekly review?',
-  'How is BluePeak Software tracking against plan?',
+  'Which leaders are executing with real rigor?',
   'Why is Apex Health flagged?',
-  'Which initiatives are overdue or at risk?',
+  'Where is the unfair competitive advantage being built?',
 ];
 
 export default function ChatPanel() {
@@ -34,7 +34,7 @@ export default function ChatPanel() {
         {
           role: 'assistant',
           content:
-            "I'm your SignalBridge AI Advisor. I have full visibility into portfolio performance, risks, initiatives, and KPIs across all five companies.\n\nWhat would you like to dig into?",
+            "I'm Think like Seth — channeling Seth Merrin's operating philosophy across the SignalBridge portfolio. I see every company's financials, KPIs, risks, initiatives, and team health.\n\nWhat do you want to dig into? Where do we need positive destruction thinking applied?",
         },
       ]);
     }
@@ -123,7 +123,7 @@ export default function ChatPanel() {
       {
         role: 'assistant',
         content:
-          "Conversation cleared. I'm your SignalBridge AI Advisor — what would you like to explore?",
+          "Conversation cleared. Think like Seth is ready — what do you want to work through?",
       },
     ]);
   }
@@ -137,7 +137,7 @@ export default function ChatPanel() {
           className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-full shadow-lg shadow-blue-900/40 transition-all duration-200 text-sm font-medium"
         >
           <MessageSquare className="w-4 h-4" />
-          AI Advisor
+          Think like Seth
         </button>
       )}
 
@@ -151,8 +151,8 @@ export default function ChatPanel() {
                 <Bot className="w-4 h-4 text-white" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-slate-100">AI Advisor</p>
-                <p className="text-[11px] text-slate-500">SignalBridge OS · Portfolio Intelligence</p>
+                <p className="text-sm font-semibold text-slate-100">Think like Seth</p>
+                <p className="text-[11px] text-slate-500">Merrin Investors · Positive Destruction</p>
               </div>
             </div>
             <div className="flex items-center gap-1">
