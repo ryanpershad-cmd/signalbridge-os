@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { Sparkles, Loader2, ArrowRight, Clock, UserRound, CheckCircle2 } from 'lucide-react';
+import { Sparkles, Loader2, ArrowRight, Clock, UserRound, CheckCircle2, Upload, ExternalLink } from 'lucide-react';
 import { firms } from '@/lib/firm/firms';
 import { diagnoseFirm, buildDiagnosticBrief, Initiative } from '@/lib/firm/diagnostics';
 import { LeverKey } from '@/lib/firm/benchmarks';
@@ -45,6 +45,9 @@ export default function PlanningPage() {
   const [activeSlug, setActiveSlug] = useState(firms[0].slug);
   const [memo, setMemo] = useState('');
   const [memoLoading, setMemoLoading] = useState(false);
+  const [notionStatus, setNotionStatus] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
+  const [notionUrl, setNotionUrl] = useState('');
+  const [notionError, setNotionError] = useState('');
 
   const firm = firms.find((f) => f.slug === activeSlug)!;
   const diag = useMemo(() => diagnoseFirm(firm), [firm]);
@@ -83,14 +86,53 @@ export default function PlanningPage() {
     }
   }
 
+  async function pushToNotion() {
+    if (notionStatus === 'loading') return;
+    setNotionStatus('loading');
+    setNotionUrl('');
+    setNotionError('');
+    try {
+      const res = await fetch('/api/notion', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug: firm.slug }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to push to Notion');
+      setNotionUrl(data.url);
+      setNotionStatus('done');
+    } catch (e) {
+      setNotionError(e instanceof Error ? e.message : 'Failed to push to Notion');
+      setNotionStatus('error');
+    }
+  }
+
   return (
     <div className="p-6 space-y-6 max-w-[1400px] mx-auto">
       {/* Header */}
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-100">Research &amp; Planning</h1>
-        <p className="text-[13px] text-slate-500 mt-0.5">
-          Diagnostic &amp; value-creation engine · benchmarked against platform standard · Q4 2024
-        </p>
+      <div className="flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight text-slate-100">Research &amp; Planning</h1>
+          <p className="text-[13px] text-slate-500 mt-0.5">
+            Diagnostic &amp; value-creation engine · benchmarked against platform standard · Q4 2024
+          </p>
+        </div>
+        <div className="flex flex-col items-end gap-1">
+          <button
+            onClick={pushToNotion}
+            disabled={notionStatus === 'loading'}
+            className="flex items-center gap-1.5 text-[12px] text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 disabled:opacity-60 rounded-lg px-3 py-1.5 transition-colors"
+          >
+            {notionStatus === 'loading' ? <Loader2 size={13} className="animate-spin" /> : <Upload size={13} />}
+            {notionStatus === 'loading' ? 'Pushing to Notion…' : `Push ${firm.name} to Notion`}
+          </button>
+          {notionStatus === 'done' && notionUrl && (
+            <a href={notionUrl} target="_blank" rel="noreferrer" className="text-[11px] text-blue-400 hover:underline flex items-center gap-1">
+              <ExternalLink size={10} /> View checklist in Notion
+            </a>
+          )}
+          {notionStatus === 'error' && <span className="text-[11px] text-red-400">{notionError}</span>}
+        </div>
       </div>
 
       {/* Firm selector */}
