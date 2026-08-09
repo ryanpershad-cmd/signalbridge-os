@@ -38,7 +38,7 @@ export default function Sidebar() {
             SignalBridge OS
           </span>
         </div>
-        <p className="text-slate-500 text-[11px] ml-8">SignalBridge Capital</p>
+        <p className="text-slate-500 text-[11px] ml-8">by Claritai</p>
       </div>
 
       {/* Main nav */}
