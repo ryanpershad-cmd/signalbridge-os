@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutGrid, Layers, AlertTriangle, Calendar } from 'lucide-react';
+import { LayoutGrid, Layers, AlertTriangle, Calendar, Database } from 'lucide-react';
 import clsx from 'clsx';
 
 const companies = [
@@ -15,6 +15,7 @@ const companies = [
 
 const navItems = [
   { label: 'Portfolio', icon: LayoutGrid, href: '/' },
+  { label: 'Ingestion', icon: Database, href: '/ingestion' },
   { label: 'Initiatives', icon: Layers, href: '/initiatives' },
   { label: 'Risks & Blockers', icon: AlertTriangle, href: '/risks' },
   { label: 'Operating Cadence', icon: Calendar, href: '/cadence' },
@@ -29,13 +30,13 @@ export default function Sidebar() {
       <div className="px-4 py-5 border-b border-slate-800">
         <div className="flex items-center gap-2.5 mb-0.5">
           <div className="w-6 h-6 rounded bg-blue-600 flex items-center justify-center flex-shrink-0">
-            <span className="text-white text-[10px] font-bold">E</span>
+            <span className="text-white text-[10px] font-bold">S</span>
           </div>
           <span className="text-slate-100 font-semibold text-[13px] tracking-widest uppercase">
             SignalBridge OS
           </span>
         </div>
-        <p className="text-slate-500 text-[11px] ml-8">By Merrin Investors</p>
+        <p className="text-slate-500 text-[11px] ml-8">SignalBridge Capital</p>
       </div>
 
       {/* Main nav */}
