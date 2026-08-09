@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutGrid, Layers, AlertTriangle, Calendar, Database, Target } from 'lucide-react';
+import { LayoutGrid, Layers, AlertTriangle, Calendar, Database, Target, Settings } from 'lucide-react';
 import clsx from 'clsx';
 
 const companies = [
@@ -20,6 +20,7 @@ const navItems = [
   { label: 'Initiatives', icon: Layers, href: '/initiatives' },
   { label: 'Risks & Blockers', icon: AlertTriangle, href: '/risks' },
   { label: 'Operating Cadence', icon: Calendar, href: '/cadence' },
+  { label: 'Settings', icon: Settings, href: '/settings' },
 ];
 
 export default function Sidebar() {

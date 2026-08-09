@@ -19,6 +19,8 @@ export const SERVICE_LINE_LABELS: Record<ServiceLine, string> = {
 /** Source systems the ingestion layer can (simulate a) connect to. */
 export type AccountingSystem =
   | 'quickbooks'
+  | 'xero'
+  | 'sage'
   | 'karbon'
   | 'cch-axcess'
   | 'ultratax'
@@ -26,6 +28,8 @@ export type AccountingSystem =
 
 export const SYSTEM_LABELS: Record<AccountingSystem, string> = {
   quickbooks: 'QuickBooks Online',
+  xero: 'Xero',
+  sage: 'Sage',
   karbon: 'Karbon',
   'cch-axcess': 'CCH Axcess',
   ultratax: 'UltraTax CS',
