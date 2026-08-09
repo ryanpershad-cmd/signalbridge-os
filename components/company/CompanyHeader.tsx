@@ -8,11 +8,10 @@ interface CompanyHeaderProps {
 }
 
 const sectorColors: Record<string, string> = {
-  'CPG': 'bg-purple-500/15 text-purple-400',
-  'Healthcare Services': 'bg-teal-500/15 text-teal-400',
-  'Logistics': 'bg-amber-500/15 text-amber-400',
-  'B2B SaaS': 'bg-blue-500/15 text-blue-400',
-  'Home Services': 'bg-orange-500/15 text-orange-400',
+  'Tax & Advisory': 'bg-purple-500/15 text-purple-400',
+  'Audit & Assurance': 'bg-teal-500/15 text-teal-400',
+  'Client Accounting': 'bg-blue-500/15 text-blue-400',
+  'Advisory & CFO': 'bg-green-500/15 text-green-400',
 };
 
 export default function CompanyHeader({ company }: CompanyHeaderProps) {

@@ -44,7 +44,7 @@ export default function PortfolioOverview() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-slate-100">Portfolio Overview</h1>
-          <p className="text-[13px] text-slate-500 mt-0.5">SignalBridge OS · By Merrin Investors · Q4 2024</p>
+          <p className="text-[13px] text-slate-500 mt-0.5">SignalBridge OS · Accounting-firm roll-up · Q4 2024</p>
         </div>
         {/* Filters */}
         <div className="flex items-center gap-2">
@@ -53,12 +53,11 @@ export default function PortfolioOverview() {
             onChange={e => setSectorFilter(e.target.value)}
             className="bg-[#161b27] border border-slate-800 rounded-lg px-3 py-1.5 text-[12px] text-slate-400 outline-none focus:border-blue-500/50"
           >
-            <option value="">All Sectors</option>
-            <option value="CPG">CPG</option>
-            <option value="Healthcare Services">Healthcare</option>
-            <option value="Logistics">Logistics</option>
-            <option value="B2B SaaS">B2B SaaS</option>
-            <option value="Home Services">Home Services</option>
+            <option value="">All Service Lines</option>
+            <option value="Tax & Advisory">Tax & Advisory</option>
+            <option value="Audit & Assurance">Audit & Assurance</option>
+            <option value="Client Accounting">Client Accounting</option>
+            <option value="Advisory & CFO">Advisory & CFO</option>
           </select>
           <select
             value={statusFilter}
@@ -145,7 +144,7 @@ export default function PortfolioOverview() {
             {sortedByScore.map((company, idx) => (
               <Link
                 key={company.slug}
-                href={`/company/${company.slug}`}
+                href={`/company/${company.slug}`} data-row="1" data-sector={company.sector} data-status={company.status}
                 className="flex items-center gap-4 px-5 py-4 hover:bg-slate-800/20 transition-colors"
               >
                 <span className="text-[13px] font-mono text-slate-600 w-4 flex-shrink-0">#{idx + 1}</span>

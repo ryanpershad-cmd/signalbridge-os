@@ -40,7 +40,7 @@ export default function HeatmapTable({ companies }: HeatmapTableProps) {
         </thead>
         <tbody className="divide-y divide-slate-800/50">
           {companies.map(company => (
-            <tr key={company.slug} className="hover:bg-slate-800/20 transition-colors group">
+            <tr key={company.slug} data-row="1" data-sector={company.sector} data-status={company.status} className="hover:bg-slate-800/20 transition-colors group">
               <td className="px-4 py-3">
                 <Link href={`/company/${company.slug}`} className="group-hover:text-blue-400 transition-colors">
                   <div className="font-medium text-slate-200 text-[13px]">{company.name}</div>

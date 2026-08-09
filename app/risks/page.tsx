@@ -36,7 +36,10 @@ export default function RisksPage() {
   const summaryLines = [
     `Portfolio risk posture: ${criticalRisks.length} critical and ${highRisks.length} high risks currently open across ${companies.length} portfolio companies.`,
     `${escalated.length} risks are escalated and require immediate GP-level attention: ${escalated.map(r => `${r.companyName} — ${r.title}`).join('; ')}.`,
-    `Apex Health represents the most concentrated risk exposure with 4 open risks including 2 critical (Medicaid reimbursement and COO leadership gap). Both are on active mitigation plans.`,
+    (() => {
+      const worst = [...companies].map(c => ({ name: c.name, n: c.risks.filter(r => r.status !== 'resolved').length })).sort((a, b) => b.n - a.n)[0];
+      return `${worst.name} carries the most concentrated risk exposure with ${worst.n} open risks, all tied to below-standard value levers and on active mitigation plans.`;
+    })(),
   ];
 
   return (

@@ -6,11 +6,11 @@ import { LayoutGrid, Layers, AlertTriangle, Calendar, Database, Target } from 'l
 import clsx from 'clsx';
 
 const companies = [
-  { name: 'Northstar Foods', slug: 'northstar-foods', color: '#22c55e' },
-  { name: 'BluePeak Software', slug: 'bluepeak-software', color: '#3b82f6' },
-  { name: 'Vertex Logistics', slug: 'vertex-logistics', color: '#f59e0b' },
-  { name: 'Harbor Home Services', slug: 'harbor-home-services', color: '#f97316' },
-  { name: 'Apex Health', slug: 'apex-health', color: '#ef4444' },
+  { name: 'Meridian Tax & Advisory', slug: 'meridian-tax-advisory', color: '#22c55e' },
+  { name: 'Caldwell & Co. CPAs', slug: 'caldwell-cpas', color: '#3b82f6' },
+  { name: 'Summit Ledger', slug: 'summit-ledger', color: '#f59e0b' },
+  { name: 'Coastal Assurance Partners', slug: 'coastal-assurance', color: '#f97316' },
+  { name: 'Hollis CPA Group', slug: 'hollis-cpa-group', color: '#ef4444' },
 ];
 
 const navItems = [
@@ -66,7 +66,7 @@ export default function Sidebar() {
 
         <div className="px-3 mt-4">
           <p className="px-3 mb-2 text-[10px] uppercase tracking-widest text-slate-600 font-medium">
-            Portfolio Companies
+            Portfolio Firms
           </p>
           {companies.map(company => {
             const href = `/company/${company.slug}`;

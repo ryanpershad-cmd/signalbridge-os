@@ -46,7 +46,7 @@ export default function RiskRegister({ risks }: RiskRegisterProps) {
             const cfg = severityConfig[risk.severity];
             const Icon = cfg.icon;
             return (
-              <tr key={risk.id} className="hover:bg-slate-800/20 transition-colors">
+              <tr key={risk.id} data-row="1" data-company={risk.companySlug} data-severity={risk.severity} data-function={risk.function} data-status={risk.status} className="hover:bg-slate-800/20 transition-colors">
                 <td className="px-3 py-3">
                   <span className={clsx('text-[10px] px-1.5 py-0.5 rounded border uppercase tracking-wider font-medium', cfg.badge)}>
                     {risk.severity}

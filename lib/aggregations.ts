@@ -190,36 +190,28 @@ export function getWeeklyReviewTopics(companies: Company[]): ReviewTopic[] {
 export function generateExecutiveBrief(companies: Company[]): string[] {
   const summary = getPortfolioSummary(companies);
   const brief: string[] = [];
-
+  const byScore = [...companies].sort((a, b) => b.frameworkScore.overall - a.frameworkScore.overall);
+  const top = byScore[0];
+  const bottom = byScore[byScore.length - 1];
   const revenueAtt = (summary.totalRevenueLTM / summary.totalRevenuePlan * 100 - 100).toFixed(1);
-  brief.push(
-    `Portfolio revenue LTM $${summary.totalRevenueLTM.toFixed(0)}M vs $${summary.totalRevenuePlan.toFixed(0)}M plan (${Number(revenueAtt) >= 0 ? '+' : ''}${revenueAtt}%) — BluePeak and Northstar outperformance partially offset by Apex Health and Harbor underperformance.`
-  );
-
   const ebitdaAtt = (summary.totalEBITDALTM / summary.totalEBITDAPlan * 100 - 100).toFixed(1);
+  const critical = companies.filter(c => c.risks.some(r => r.severity === 'critical' && r.status !== 'resolved')).map(c => c.name);
+  const upside = companies.map(c => ({ name: c.name, up: c.initiatives.reduce((s, i) => s + i.estimatedValue, 0) })).sort((a, b) => b.up - a.up);
+  const totalInit = companies.reduce((s, c) => s + c.initiatives.length, 0);
   brief.push(
-    `EBITDA LTM $${summary.totalEBITDALTM.toFixed(1)}M vs $${summary.totalEBITDAPlan.toFixed(1)}M plan (${Number(ebitdaAtt) >= 0 ? '+' : ''}${ebitdaAtt}%) — margin compression at Apex Health (-600bps) and Harbor (-400bps) are primary drag on portfolio EBITDA.`
+    `Portfolio revenue LTM $${summary.totalRevenueLTM.toFixed(0)}M vs $${summary.totalRevenuePlan.toFixed(0)}M plan (${Number(revenueAtt) >= 0 ? '+' : ''}${revenueAtt}%) across ${companies.length} acquired firms. ${top.name} leads on benchmark score (${top.frameworkScore.overall}/5); ${bottom.name} is the priority turnaround (${bottom.frameworkScore.overall}/5).`
   );
-
   brief.push(
-    `${summary.openCriticalRisks} open critical risks across portfolio: Apex Health (Medicaid reimbursement, COO gap), Harbor Home Services (close rate decline). Both companies on elevated monitoring cadence with weekly operating calls.`
+    `EBITDA LTM $${summary.totalEBITDALTM.toFixed(1)}M vs $${summary.totalEBITDAPlan.toFixed(1)}M plan (${Number(ebitdaAtt) >= 0 ? '+' : ''}${ebitdaAtt}%). Largest identified upside: ${upside[0].name} (+$${upside[0].up.toFixed(1)}M) and ${upside[1].name} (+$${upside[1].up.toFixed(1)}M) from realization and utilization resets.`
   );
-
   brief.push(
-    `Initiatives: ${summary.initiativesOnTrackPct.toFixed(0)}% on track. Key overdue items: Apex Health clinician utilization program and Harbor membership launch. Both require CEO-level intervention within 30 days.`
+    `${summary.openCriticalRisks} open critical risks${critical.length ? `: ${critical.join(', ')}` : ''}. Weakest levers concentrate in pricing/realization and cash lockup across the watch and turnaround firms.`
   );
-
   brief.push(
-    `BluePeak ARR $67.2M (+59% YoY) — tracking to become 35% of portfolio value within 24 months. Engineering talent gap is primary risk to growth trajectory; compensation adjustment required in Q1 2025.`
+    `Initiatives: ${summary.initiativesOnTrackPct.toFixed(0)}% on track across ${totalInit} value-creation initiatives; costed plans are generated and ready to push to Notion.`
   );
-
   brief.push(
-    `Vertex Logistics showing 6-month consecutive improvement across OTD (84%→91%), route margin (+350bps), and driver turnover (-14pts). Turnaround thesis intact — dedicated contract close is the key near-term value creation lever.`
+    `Advisory-mix shift and offshore delivery carry the most aggregate EBITDA potential across the portfolio; sequence pricing and realization first for fastest payback.`
   );
-
-  brief.push(
-    `Portfolio headcount at ${summary.headcountAttainmentPct.toFixed(0)}% of plan — talent remains the #1 execution constraint across 4 of 5 companies. Recommend portfolio-wide compensation benchmarking as a Q1 2025 platform initiative.`
-  );
-
   return brief;
 }

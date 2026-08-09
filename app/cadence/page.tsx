@@ -17,43 +17,19 @@ export default function CadencePage() {
     .slice(0, 12);
 
   // Key decisions pending
-  const keyDecisions = [
-    {
-      company: 'Apex Health',
-      decision: 'Approve 12-15% clinician compensation adjustment to reduce turnover in Dallas, Charlotte, and Atlanta markets',
-      owner: 'Dr. Rebecca Fontes, CEO',
-      deadline: 'Jan 1, 2025',
-      urgency: 'critical',
-    },
-    {
-      company: 'BluePeak Software',
-      decision: 'Approve engineering total comp increase (15-20%) and evaluate Austin/Toronto hub opening to solve talent gap',
-      owner: 'Jenna Park, CEO',
-      deadline: 'Jan 15, 2025',
-      urgency: 'high',
-    },
-    {
-      company: 'Harbor Home Services',
-      decision: 'Lock membership program pricing ($199 vs $229) and commit to January 1 soft launch — no further delays',
-      owner: 'Chris Alderman, CEO',
-      deadline: 'Dec 15, 2024',
-      urgency: 'critical',
-    },
-    {
-      company: 'Vertex Logistics',
-      decision: 'CEO direct outreach to Southeast Foods Group procurement team to unlock Prospect A dedicated contract execution',
-      owner: 'Robert Kaczmarek, CEO',
-      deadline: 'Dec 20, 2024',
-      urgency: 'high',
-    },
-    {
-      company: 'Northstar Foods',
-      decision: 'Authorize protein bar launch pre-sell for Q1 — Whole Foods Dec 8 meeting outcome to determine timing',
-      owner: 'Marcus Tillman, CEO',
-      deadline: 'Dec 20, 2024',
-      urgency: 'medium',
-    },
-  ];
+  const keyDecisions = [...companies]
+    .sort((a, b) => a.frameworkScore.overall - b.frameworkScore.overall)
+    .slice(0, 5)
+    .map(c => {
+      const top = [...c.initiatives].sort((x, y) => y.estimatedValue - x.estimatedValue)[0];
+      return {
+        company: c.name,
+        decision: top ? `Approve and resource: ${top.title} — ${top.expectedImpact}` : 'Finalize and approve the value-creation plan',
+        owner: top ? top.owner : c.ceo,
+        deadline: top ? top.dueDate : 'Q1 2025',
+        urgency: c.status === 'intervention' ? 'critical' : c.status === 'watch' ? 'high' : 'medium',
+      };
+    });
 
   // Monthly review template items
   const monthlyReviewItems = [

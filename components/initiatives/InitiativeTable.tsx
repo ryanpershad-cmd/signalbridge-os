@@ -86,7 +86,7 @@ export default function InitiativeTable({ initiatives }: InitiativeTableProps) {
               const statusCfg = statusConfig[init.status];
               return (
                 <tr
-                  key={init.id}
+                  key={init.id} data-row="1" data-company={init.companySlug} data-function={init.function} data-priority={init.priority} data-status={init.status}
                   className="hover:bg-slate-800/20 cursor-pointer transition-colors"
                   onClick={() => setSelected(init)}
                 >

@@ -10,12 +10,12 @@ interface Message {
 }
 
 const SUGGESTED_PROMPTS = [
-  'Where do we need positive destruction thinking right now?',
-  'Which companies have a championship team problem?',
-  'What are the biggest risks across the portfolio?',
-  'Which leaders are executing with real rigor?',
-  'Why is Apex Health flagged?',
-  'Where is the unfair competitive advantage being built?',
+  'Which firm has the most EBITDA upside and why?',
+  'Where is realization dragging across the portfolio?',
+  'Which firms need offshore delivery the most?',
+  'Who is closest to platform standard?',
+  'Why is Hollis CPA Group flagged as a turnaround?',
+  'Where should we push advisory cross-sell first?',
 ];
 
 export default function ChatPanel() {
@@ -34,7 +34,7 @@ export default function ChatPanel() {
         {
           role: 'assistant',
           content:
-            "I'm Think like Seth — channeling Seth Merrin's operating philosophy across the SignalBridge portfolio. I see every company's financials, KPIs, risks, initiatives, and team health.\n\nWhat do you want to dig into? Where do we need positive destruction thinking applied?",
+            "I'm Think like Seth — channeling Seth Merrin's operating philosophy across the SignalBridge accounting-firm roll-up. I see every firm's normalized financials, benchmarks, value-creation initiatives, and risks.\n\nWhat do you want to dig into? Where should we apply positive destruction thinking first?",
         },
       ]);
     }

@@ -1,5 +1,5 @@
-export type CompanySlug = 'northstar-foods' | 'apex-health' | 'vertex-logistics' | 'bluepeak-software' | 'harbor-home-services';
-export type Sector = 'CPG' | 'Healthcare Services' | 'Logistics' | 'B2B SaaS' | 'Home Services';
+export type CompanySlug = 'meridian-tax-advisory' | 'caldwell-cpas' | 'summit-ledger' | 'coastal-assurance' | 'hollis-cpa-group';
+export type Sector = 'Tax & Advisory' | 'Audit & Assurance' | 'Client Accounting' | 'Advisory & CFO';
 export type Status = 'on-track' | 'watch' | 'intervention' | 'outperforming';
 export type Priority = 'critical' | 'high' | 'medium' | 'low';
 export type InitiativeStatus = 'on-track' | 'at-risk' | 'overdue' | 'complete' | 'not-started';
