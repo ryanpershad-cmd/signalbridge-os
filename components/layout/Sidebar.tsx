@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutGrid, Layers, AlertTriangle, Calendar, Database } from 'lucide-react';
+import { LayoutGrid, Layers, AlertTriangle, Calendar, Database, Target } from 'lucide-react';
 import clsx from 'clsx';
 
 const companies = [
@@ -16,6 +16,7 @@ const companies = [
 const navItems = [
   { label: 'Portfolio', icon: LayoutGrid, href: '/' },
   { label: 'Ingestion', icon: Database, href: '/ingestion' },
+  { label: 'Research & Planning', icon: Target, href: '/planning' },
   { label: 'Initiatives', icon: Layers, href: '/initiatives' },
   { label: 'Risks & Blockers', icon: AlertTriangle, href: '/risks' },
   { label: 'Operating Cadence', icon: Calendar, href: '/cadence' },
